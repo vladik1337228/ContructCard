@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="card.png" />
+    <None Remove="card1.png" />
+    <None Remove="card2.jpg" />
+    <None Remove="card3.jpg" />
+    <None Remove="card4.png" />
+    <None Remove="invert1.ps" />
+    <None Remove="ofont_ru_Fixedsys.ttf" />
+    <None Remove="output.ps" />
+    <None Remove="perfocard_4f_bold.ttf" />
+    <None Remove="post_negative.fx" />
+    <None Remove="StandartPattern.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Drive.v2" Version="1.55.0.2502" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="8.4.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ofont_ru_Fixedsys.ttf" />
+    <Resource Include="perfocard_4f_bold.ttf" />
+    <Resource Include="StandartPattern.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="client_secret.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
