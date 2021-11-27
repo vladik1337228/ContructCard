@@ -287,10 +287,10 @@ namespace ContructCard
             {
                 var panel = obj as Canvas;
 
-                PrintDialog pd = new PrintDialog();
-                pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print to PDF");
-                pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
-                pd.PrintVisual(panel, "card");
+                //PrintDialog pd = new PrintDialog();
+                //pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print to PDF");
+                //pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
+                //pd.PrintVisual(panel, "card");
 
                 openFileDialog.Title = "Выберите PDF файл для отправки на гугл диск";
                 openFileDialog.Filter = "PDF Files(*.PDF;)|*.PDF;|All files (*.*)|*.*";
