@@ -96,6 +96,7 @@ namespace ContructCard
         public string NumberCard { get; set; }
         public int Mana { get; set; }
         public int TypeCard { get; set; }
+        public int SkillCard { get; set; }
         public string TextCard { get; set; }
         public string PathImage { get; set; }
         public int PatternCard { get; set; }
@@ -108,7 +109,7 @@ namespace ContructCard
         {
         }
 
-        public CardSerialization(int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale)
+        public CardSerialization(int skillCard, int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale)
         {
             Dmg = dmg;
             Hp = hp;
@@ -123,6 +124,7 @@ namespace ContructCard
             TextFontSize = textFontSize;
             AlignmentX = alignmentX;
             Scale = scale;
+            SkillCard = skillCard;
         }
     }
 
@@ -133,6 +135,7 @@ namespace ContructCard
         public AlignmentX ImageX { get; set; }
         public ObservableCollection<SizeFont> CollectionSize { get; set; }
         public ObservableCollection<SizeFont> CollectionSizeTitle { get; set; }
+        public Skills Skills { get; set; }
         public string ImagePath { get; set; }
 
         public ModelMain()
@@ -149,6 +152,7 @@ namespace ContructCard
 
 
         public Cards Cards { get { return modelMain.Cards; } set { modelMain.Cards = value; OnPropertyChanged("Cards"); } }
+        public Skills Skills { get { return modelMain.Skills; } set { modelMain.Skills = value; OnPropertyChanged("Skills"); } }
         public int ValueSlider3 { get { return cardSerialization.AlignmentX; }  set { cardSerialization.AlignmentX = value; OnPropertyChanged("ValueSlider3"); } }
         public AlignmentX ImageX { get { return modelMain.ImageX; } set { modelMain.ImageX = value; OnPropertyChanged("ImageX"); } }
         public double ImageY { get { return cardSerialization.Scale; } set { cardSerialization.Scale = value; OnPropertyChanged("ImageY"); } }
@@ -166,6 +170,8 @@ namespace ContructCard
         public string TextCard { get { return cardSerialization.TextCard; } set { cardSerialization.TextCard = value; OnPropertyChanged("TextCard"); } }
         public int TitleFontSize { get { return cardSerialization.TitleFontSize; } set { cardSerialization.TitleFontSize = value; OnPropertyChanged("TitleFontSize"); } }
         public int TextFontSize { get { return cardSerialization.TextFontSize; } set { cardSerialization.TextFontSize = value; OnPropertyChanged("TextFontSize"); } }
+        public int SkillCard { get { return cardSerialization.SkillCard; } set { cardSerialization.SkillCard = value; OnPropertyChanged("SkillCard"); } }
+
 
         public ViewModelMain()
         {
@@ -173,6 +179,7 @@ namespace ContructCard
             cardSerialization = new CardSerialization();
             modelMain = new ModelMain();
             Cards = new Cards();
+            Skills = new Skills(); 
 
             ImageY = 1.0;
 
@@ -425,6 +432,7 @@ namespace ContructCard
                         ValueSlider3 = cardSerialization.AlignmentX;
                         ImageY = cardSerialization.Scale;
                         ImagePath = cardSerialization.PathImage;
+                        SkillCard = cardSerialization.SkillCard;
                     }
                     NuberCards();
                 }));

@@ -32,10 +32,10 @@ namespace ContructCard
             ViewModelMain viewModelMain = new ViewModelMain();
 
             viewModelMain.Cards.CollectionCard.Add(
-                new Card("Стандартный шаблон", @"/StandartPattern.png", new Uri("Dictionary2.xaml", UriKind.Relative)));
+                new Card("Стандартный шаблон", @"/StandartPattern.png", new Uri("Dictionary2.xaml", UriKind.Relative), "Карта игральной колоды. Неуникальна. Составляет игральную колоду игрока."));
             
             viewModelMain.Cards.CollectionCard.Add(
-                new Card("Шаблон персонажа", @"/PersonalPattern.png", new Uri("Dictionary1.xaml", UriKind.Relative)));
+                new Card("Шаблон персонажа", @"/PersonalPattern.png", new Uri("Dictionary1.xaml", UriKind.Relative), "Карта персонажа. Уникальна. Выбирается в начале игры. Влияет на стиль игры."));
            
             comboBox1.SelectionChanged += ComboBox1_SelectionChanged;
             DataContext = viewModelMain;
