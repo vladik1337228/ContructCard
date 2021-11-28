@@ -29,6 +29,7 @@ namespace ContructCard
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string Value = value.ToString();
+
             for (int i = 0; i < 2; i++)
                 if (Value.Length < 3)
                     Value = "0" + Value;

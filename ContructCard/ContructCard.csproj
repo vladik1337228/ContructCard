@@ -17,8 +17,14 @@
     <None Remove="ofont_ru_Fixedsys.ttf" />
     <None Remove="output.ps" />
     <None Remove="perfocard_4f_bold.ttf" />
+    <None Remove="PersonalPattern.png" />
     <None Remove="post_negative.fx" />
     <None Remove="StandartPattern.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Dictionary1.xaml" />
+    <Page Remove="Dictionary2.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,8 +37,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Dictionary1.xaml" />
+    <Resource Include="Dictionary2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Resource Include="ofont_ru_Fixedsys.ttf" />
     <Resource Include="perfocard_4f_bold.ttf" />
+    <Resource Include="PersonalPattern.png" />
     <Resource Include="StandartPattern.png" />
   </ItemGroup>
 

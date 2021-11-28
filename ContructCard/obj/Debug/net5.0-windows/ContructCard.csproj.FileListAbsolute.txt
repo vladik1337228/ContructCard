@@ -41,7 +41,6 @@ C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes\win-x64\native\Magick.Native-Q16-x64.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes\win-x86\native\Magick.Native-Q16-x86.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
-C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\ContructCard.csproj.AssemblyReference.cache
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\System.Diagnostics.EventLog.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\System.ServiceProcess.ServiceController.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Diagnostics.EventLog.Messages.dll
@@ -49,3 +48,4 @@ C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.ServiceProcess.ServiceController.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\Microsoft.Dism.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\ContructCard_Content.g.cs
+C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\ContructCard.csproj.AssemblyReference.cache

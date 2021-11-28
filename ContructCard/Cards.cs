@@ -9,14 +9,16 @@ namespace ContructCard
 {
     class Card
     {
-        public Card(string nameCard, string pathImage)
+        public Card(string nameCard, string pathImage, Uri pathPattern)
         {
             NameCard = nameCard;
             PathImage = pathImage;
+            PathPattern = pathPattern;
         }
 
         public string NameCard { get; set; }
         public string PathImage { get; set; }
+        public Uri PathPattern { get; set; }
     }
 
     class Cards

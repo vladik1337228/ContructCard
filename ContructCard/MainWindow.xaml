@@ -15,6 +15,7 @@
     <Window.Resources>
         <local:MyConvert x:Key="myConverter" />
         <local:MyConverterSharp x:Key="convertSharp" />
+        <ResourceDictionary x:Key="Pattern" Source="Dictionary2.xaml"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -44,9 +45,9 @@
         </ComboBox>
         <Button Command="{Binding Save}" CommandParameter="{Binding ElementName=panel}" VerticalAlignment="Top" x:Name="button1" Grid.Column="0" Grid.Row="7" Content="Save"  Margin="10,8,10,0" MaxHeight="33" MaxWidth="243" FontWeight="Bold" FontSize="14" Height="23"/>
         <Canvas Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" x:Name="panel" Opacity="1" Width="Auto" Height="Auto">
-            <Image Panel.ZIndex="1000" x:Name="image" Source="/StandartPattern.png" Grid.Column="0" Stretch="Uniform" Grid.RowSpan="4" Grid.Row="1" Height="331" Width="258">
+            <Image Panel.ZIndex="1000" x:Name="image" Source="{Binding ElementName=comboBox1, Path=SelectedItem.PathImage}" Grid.Column="0" Stretch="Uniform" Grid.RowSpan="4" Grid.Row="1" Height="331" Width="258">
             </Image>
-            <Rectangle Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" Panel.ZIndex="1001" x:Name="imageEllips" Width="194" Height="155" Canvas.Left="32" Canvas.Top="39">
+            <Rectangle Style="{DynamicResource RectangleSettings}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" Panel.ZIndex="1001" x:Name="imageEllips" Width="194" Canvas.Left="32">
                 <Rectangle.Fill>
                     <ImageBrush AlignmentX="{Binding ImageX}" x:Name="imageBrush" ImageSource="{Binding ImagePath}" Stretch="UniformToFill" TileMode="None" Viewbox="0,0,1,1" Viewport="0,0,1,1" ViewportUnits="RelativeToBoundingBox" ViewboxUnits="RelativeToBoundingBox">
                         <ImageBrush.RelativeTransform>
@@ -58,13 +59,13 @@
                     </ImageBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBox FontFamily="./#Fixedsys Excelsior 3.01" Focusable="False" FontSize="{Binding ElementName=FontSizeBox, Path=SelectedItem.FontSize}" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=textbox, Path=Text}" Panel.ZIndex="1001" Grid.Row="4" Grid.Column="0" Canvas.Left="33" Canvas.Top="203" Width="194" Height="47" BorderBrush="{x:Null}" Background="{x:Null}"/>
-            <Label FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=3}" Grid.Row="1" Grid.RowSpan="2" Width="39" Canvas.Top="16" Canvas.Left="183" Height="24"/>
-            <Label FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider1, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" Canvas.Left="175" Canvas.Top="282" Width="46"/>
-            <Label FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch"  Panel.ZIndex="1001" Content="{Binding ElementName=slider2, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" FontStyle="Normal" Canvas.Top="282" Canvas.Left="37" Width="46" Height="47"/>
+            <TextBox Style="{DynamicResource TextBoxSettings}" FontFamily="./#Fixedsys Excelsior 3.01" Focusable="False" FontSize="{Binding ElementName=FontSizeBox, Path=SelectedItem.FontSize}" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=textbox, Path=Text}" Panel.ZIndex="1001" Grid.Row="4" Grid.Column="0" Canvas.Left="33" Width="194" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            <Label Style="{DynamicResource LabelText}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=3}" Grid.Row="1" Grid.RowSpan="2" Width="39" Canvas.Top="16" Canvas.Left="181" Height="24"/>
+            <Label Style="{DynamicResource LabelVisible}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider1, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" Canvas.Left="175" Canvas.Top="282" Width="46"/>
+            <Label Style="{DynamicResource LabelVisible}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch"  Panel.ZIndex="1001" Content="{Binding ElementName=slider2, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" FontStyle="Normal" Canvas.Top="282" Canvas.Left="37" Width="46" Height="47"/>
             <TextBlock FontFamily="./#Fixedsys Excelsior 3.01" Foreground="Black" TextAlignment="Center" FontSize="{Binding ElementName=FontSizeBoxTitle, Path=SelectedItem.FontSize}" Panel.ZIndex="1001" Text="{Binding ElementName=titleCard, Path=Text}" Width="88" Canvas.Left="83" Canvas.Top="19" Height="19"/>
-            <TextBlock FontFamily="./#Fixedsys Excelsior 3.01" Panel.ZIndex="1001" Foreground="Black" TextAlignment="Center" Text="{Binding NumberCard, Converter={StaticResource convertSharp}}" Canvas.Left="31" Canvas.Top="20" Height="15" Width="33"/>
-            <TextBlock FontFamily="./#Fixedsys Excelsior 3.01" Panel.ZIndex="1001" Foreground="White" TextAlignment="Center" Text="{Binding ElementName=typeCard, Path=SelectedItem.Content}" Canvas.Left="26" Canvas.Top="3" Height="13" Width="Auto"/>
+            <TextBlock x:Name="nuber" Style="{DynamicResource TargetTextBloc}" FontFamily="./#Fixedsys Excelsior 3.01" Panel.ZIndex="1001" Foreground="Black" TextAlignment="Center" Text="{Binding NumberCard, Converter={StaticResource convertSharp}}" Canvas.Left="31" Canvas.Top="20" Height="15" Width="33"/>
+            <TextBlock Style="{DynamicResource TargetTextBlocVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Panel.ZIndex="1001" Foreground="White" TextAlignment="Center" Text="{Binding ElementName=typeCard, Path=SelectedItem.Content}" Canvas.Left="26" Canvas.Top="3" Height="13" Width="Auto"/>
         </Canvas>
         <Slider Value="{Binding Mana}" HorizontalContentAlignment="Center" x:Name="slider" Grid.Column="1" Grid.Row="1" Maximum="10" MinWidth="100" MaxWidth="100" Margin="8,10,16,8" SmallChange="1" TickPlacement="BottomRight" AutoToolTipPlacement="None" Interval="1" IsSnapToTickEnabled="True" />
         <Slider Value="{Binding Hp}" HorizontalContentAlignment="Center" x:Name="slider1" Grid.Column="1" Grid.Row="2" Maximum="10" MinWidth="100" MaxWidth="100" Margin="8,10,16,8" IsSnapToTickEnabled="True" Interval="1" SmallChange="1" TickPlacement="BottomRight" />

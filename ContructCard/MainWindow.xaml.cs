@@ -31,8 +31,24 @@ namespace ContructCard
 
             ViewModelMain viewModelMain = new ViewModelMain();
 
-            viewModelMain.Cards.CollectionCard.Add(new Card("Стандартный шаблон", @"/StandartPattern.png"));
+            viewModelMain.Cards.CollectionCard.Add(
+                new Card("Стандартный шаблон", @"/StandartPattern.png", new Uri("Dictionary2.xaml", UriKind.Relative)));
+            
+            viewModelMain.Cards.CollectionCard.Add(
+                new Card("Шаблон персонажа", @"/PersonalPattern.png", new Uri("Dictionary1.xaml", UriKind.Relative)));
+           
+            comboBox1.SelectionChanged += ComboBox1_SelectionChanged;
             DataContext = viewModelMain;
+        }
+
+        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Card card = (Card)comboBox1.SelectedItem;
+
+            ResourceDictionary resourceDictionary = Application.LoadComponent(card.PathPattern) as ResourceDictionary;
+
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
     }
 }
