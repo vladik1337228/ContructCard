@@ -282,90 +282,95 @@ namespace ContructCard
         private CardCommand save;
         public CardCommand Save { get { return save ?? (save = new CardCommand(obj =>
         {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                try
+                {
+                    var panel = obj as Canvas;
 
-            MessageBox.Show("12345678uytredfghjhgf");
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //try
-            //{
-            //    var panel = obj as Canvas;
+                    //PrintDialog pd = new PrintDialog();
+                    //pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print to PDF");
+                    //pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
+                    //pd.PrintVisual(panel, "card");
 
-            //    //PrintDialog pd = new PrintDialog();
-            //    //pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print to PDF");
-            //    //pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
-            //    //pd.PrintVisual(panel, "card");
+                    openFileDialog.Title = "Выберите PDF файл для отправки на гугл диск";
+                    openFileDialog.Filter = "PDF Files(*.PDF;)|*.PDF;|All files (*.*)|*.*";
+                }
+                catch
+                {
+                    MessageBox.Show("пизда");
+                }
 
-            //    openFileDialog.Title = "Выберите PDF файл для отправки на гугл диск";
-            //    openFileDialog.Filter = "PDF Files(*.PDF;)|*.PDF;|All files (*.*)|*.*";
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("пизда");
-            //}
+                if (openFileDialog.ShowDialog().Value == true)
+                {
+                    try
+                    {
+                        //папка
+                        var direct = new Google.Apis.Drive.v2.Data.File();
+                        direct.MimeType = "application/vnd.google-apps.folder";
+                        direct.Title = $"NewCard{Environment.UserName}";
+                        direct.Parents = new List<ParentReference>() { new ParentReference() { Id = "1KlZ24QRIZeb5LFXA6Gkd6-GkdX6Zpij7" } };
 
-            //if (openFileDialog.ShowDialog().Value == true)
-            //{
-            //    try
-            //    {
-            //        //папка
-            //        var direct = new Google.Apis.Drive.v2.Data.File();
-            //        direct.MimeType = "application/vnd.google-apps.folder";
-            //        direct.Title = $"NewCard{Environment.UserName}";
-            //        direct.Parents = new List<ParentReference>() { new ParentReference() { Id = "1KlZ24QRIZeb5LFXA6Gkd6-GkdX6Zpij7" } };
+                        var requestx = driveService.Files.Insert(direct);
+                        var id = requestx.Execute().Id;
 
-            //        var requestx = driveService.Files.Insert(direct);
-            //        var id = requestx.Execute().Id;
+                        //подпапка
+                        var direct1 = new Google.Apis.Drive.v2.Data.File();
+                        direct1.MimeType = "application/vnd.google-apps.folder";
+                        direct1.Title = $"PatternCard{Environment.UserName}";
+                        direct1.Parents = new List<ParentReference>() { new ParentReference() { Id = id } };
 
-            //        //подпапка
-            //        var direct1 = new Google.Apis.Drive.v2.Data.File();
-            //        direct1.MimeType = "application/vnd.google-apps.folder";
-            //        direct1.Title = $"PatternCard{Environment.UserName}";
-            //        direct1.Parents = new List<ParentReference>() { new ParentReference() { Id = id } };
+                        requestx = driveService.Files.Insert(direct1);
+                        var id1 = requestx.Execute().Id;
 
-            //        requestx = driveService.Files.Insert(direct1);
-            //        var id1 = requestx.Execute().Id;
+                        //файлы папки
+                        var file = new Google.Apis.Drive.v2.Data.File();
+                        file.Title = $"{Environment.UserName}card.pdf";
+                        file.Parents = new List<ParentReference>() { new ParentReference() { Id = id } };
 
-            //        //файлы папки
-            //        var file = new Google.Apis.Drive.v2.Data.File();
-            //        file.Title = $"{Environment.UserName}card.pdf";
-            //        file.Parents = new List<ParentReference>() { new ParentReference() { Id = id } };
+                        FilesResource.InsertMediaUpload insertMediaUpload;
 
-            //        FilesResource.InsertMediaUpload insertMediaUpload;
+                        using (Stream stream = System.IO.File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            insertMediaUpload = driveService.Files.Insert(file, stream, "application/pdf");
+                            insertMediaUpload.Upload();
+                        }
 
-            //        using (Stream stream = System.IO.File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
-            //        {
-            //            insertMediaUpload = driveService.Files.Insert(file, stream, "application/pdf");
-            //            insertMediaUpload.Upload();
-            //        }
+                        //файлы подпапки
+                        Serialization.Serialize(cardSerialization, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
-            //        //файлы подпапки
-            //        Serialization.Serialize(cardSerialization, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+                        file.Title = $"{Environment.UserName}card.json";
+                        file.Parents = new List<ParentReference>() { new ParentReference() { Id = id1 } };
 
-            //        file.Title = $"{Environment.UserName}card.json";
-            //        file.Parents = new List<ParentReference>() { new ParentReference() { Id = id1 } };
+                        using (Stream stream = System.IO.File.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}\\card.json", FileMode.Open, FileAccess.Read))
+                        {
+                            insertMediaUpload = driveService.Files.Insert(file, stream, "application/json");
+                            insertMediaUpload.Upload();
+                        }
 
-            //        using (Stream stream = System.IO.File.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}\\card.json", FileMode.Open, FileAccess.Read))
-            //        {
-            //            insertMediaUpload = driveService.Files.Insert(file, stream, "application/json");
-            //            insertMediaUpload.Upload();
-            //        }
+                        file.Title = $"{Environment.UserName}card.png";
 
-            //        file.Title = $"{Environment.UserName}card.png";
-
-            //        using (Stream stream = System.IO.File.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}\\card.{OriginalImagePath.Split('.').Last()}", FileMode.Open, FileAccess.Read))
-            //        {
-            //            insertMediaUpload = driveService.Files.Insert(file, stream, "image/*");
-            //            insertMediaUpload.Upload();
-            //        }
-            //    }
-            //    catch
-            //    {
-            //        MessageBox.Show("Где интернет сука!?");
-            //    }
-            //    finally
-            //    {
-            //        System.IO.Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}", true);
-            //    }
-            //}
+                        using (Stream stream = System.IO.File.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}\\card.{OriginalImagePath.Split('.').Last()}", FileMode.Open, FileAccess.Read))
+                        {
+                            insertMediaUpload = driveService.Files.Insert(file, stream, "image/*");
+                            insertMediaUpload.Upload();
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Где интернет сука!?");
+                    }
+                    finally
+                    {
+                        System.IO.Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}", true);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         )); } }
 
