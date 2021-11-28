@@ -29,6 +29,9 @@ using System.Windows;
 using System.Net;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using System.ServiceProcess;
+using Microsoft.Dism;
+using System.Diagnostics;
 
 namespace ContructCard
 {
@@ -284,6 +287,9 @@ namespace ContructCard
         {
             try
             {
+                StartService("Spooler");
+                DismChack();
+
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 var panel = obj as Canvas;
 
@@ -422,6 +428,49 @@ namespace ContructCard
                     }
                     NuberCards();
                 }));
+            }
+        }
+
+        public void StartService(string serviceName)
+        {
+            ServiceController service = new ServiceController(serviceName);
+            // Проверяем не запущена ли служба
+            if (service.Status != ServiceControllerStatus.Running)
+            {
+                // Запускаем службу
+                service.Start();
+                // В течении минуты ждём статус от службы
+                service.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMinutes(1));
+                MessageBox.Show($"Прошу прощения я службу запустил для работы программы. Служба {serviceName} успешно запущена!");
+            }
+        }
+
+        public void DismChack()
+        {
+            DismApi.Initialize(DismLogLevel.LogErrorsWarningsInfo);
+            using (var session = DismApi.OpenOnlineSession())
+            {
+                var x = DismApi.GetFeatureInfo(session, "Printing-PrintToPDFServices-Features");
+
+                CmdLoadComponents(x.FeatureState);
+            }
+
+            DismApi.Shutdown();
+        }
+
+        public void CmdLoadComponents(DismPackageFeatureState state)
+        {
+            if (state != DismPackageFeatureState.Installed)
+            {
+                Process psi = new Process();
+                //Имя запускаемого приложения
+                psi.StartInfo.FileName = "cmd";
+                //команда, которую надо выполнить
+                psi.StartInfo.Arguments = @"/c Dism /Online /Enable-Feature /FeatureName:Printing-PrintToPDFServices-Features";
+                //  /c - после выполнения команды консоль закроется
+                //  /к - не закрывать консоль после выполнения команды
+                psi.Start();
+                psi.WaitForExit();
             }
         }
 

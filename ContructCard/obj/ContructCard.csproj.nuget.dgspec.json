@@ -52,7 +52,15 @@
               "target": "Package",
               "version": "[8.4.0, )"
             },
+            "Microsoft.Dism": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
             "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.ServiceProcess.ServiceController": {
               "target": "Package",
               "version": "[6.0.0, )"
             },

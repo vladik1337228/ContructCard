@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qM/Vkn4igRITa6zqWsK8ngvHq+W6pNG+e6k1YLKZbIxW6IHugZ5O2m+5uNTI9Yvun3Yd1SzTLx5peFdUDksbdQ==",
+  "dgSpecHash": "6ReNP0Ml7j8VG4LlHSVHJrDyjeakO0nyMID+ItY3EW2pu4Z3eLmCMdT1AkBxN6cgyRFCakRrjisuQ5RpXtDoDw==",
   "success": true,
   "projectFilePath": "C:\\Users\\VYC\\Desktop\\ContructCard\\ContructCard\\ContructCard.csproj",
   "expectedPackageFiles": [
@@ -10,9 +10,16 @@
     "C:\\Users\\VYC\\.nuget\\packages\\google.apis.drive.v2\\1.55.0.2502\\google.apis.drive.v2.1.55.0.2502.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\magick.net-q16-anycpu\\8.4.0\\magick.net-q16-anycpu.8.4.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\magick.net.core\\8.4.0\\magick.net.core.8.4.0.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\microsoft.dism\\2.4.0\\microsoft.dism.2.4.0.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\VYC\\.nuget\\packages\\system.serviceprocess.servicecontroller\\6.0.0\\system.serviceprocess.servicecontroller.6.0.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
   ],
   "logs": [
