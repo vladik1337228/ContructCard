@@ -162,5 +162,12 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
+        <FlowDocumentScrollViewer x:Name="reader" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Margin="5">
+            <FlowDocument>
+                <Paragraph FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                    Обращение к создателям карт.
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
     </Grid>
 </Window>
