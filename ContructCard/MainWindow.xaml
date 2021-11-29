@@ -158,7 +158,7 @@
                     <i:InvokeCommandAction Command="{Binding SecondSkillCheck}"/>
                 </i:EventTrigger>
                 <i:EventTrigger EventName="Checked">
-                    <i:InvokeCommandAction Command="{Binding SecondSkillCheck}"/>s
+                    <i:InvokeCommandAction Command="{Binding SecondSkillCheck}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
