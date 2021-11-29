@@ -22,16 +22,20 @@
     </Style>
     <Style x:Key="ImageVisible" TargetType="Image">
         <Setter Property="Visibility" Value="Visible"/>
-        <Setter Property="Height" Value="54"/>
-        <Setter Property="Width" Value="56"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="Width" Value="28"/>
     </Style>
     <Style x:Key="ImageVisible2" TargetType="Image">
-        <Setter Property="Visibility" Value="Hidden"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="Width" Value="28"/>
+        <Setter Property="Canvas.Left" Value="129"/>
+        <Setter Property="Canvas.Top" Value="287"/>
     </Style>
     <Style x:Key="ComboBoxVisible" TargetType="ComboBox">
-        <Setter Property="Visibility" Value="Hidden"/>
+        <Setter Property="Visibility" Value="Visible"/>
     </Style>
     <Style x:Key="UnLabelVisible" TargetType="Label">
-        <Setter Property="Visibility" Value="Hidden"/>
+        <Setter Property="Visibility" Value="Visible"/>
     </Style>
 </ResourceDictionary>

@@ -23,4 +23,13 @@
     <Style x:Key="ImageVisible" TargetType="Image">
         <Setter Property="Visibility" Value="Hidden"/>
     </Style>
+    <Style x:Key="ImageVisible2" TargetType="Image">
+        <Setter Property="Visibility" Value="Hidden"/>
+    </Style>
+    <Style x:Key="ComboBoxVisible" TargetType="ComboBox">
+        <Setter Property="Visibility" Value="Hidden"/>
+    </Style>
+    <Style x:Key="UnLabelVisible" TargetType="Label">
+        <Setter Property="Visibility" Value="Hidden"/>
+    </Style>
 </ResourceDictionary>

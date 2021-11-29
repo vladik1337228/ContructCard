@@ -49,3 +49,4 @@ C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\runtimes
 C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\Microsoft.Dism.dll
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\ContructCard_Content.g.cs
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\ContructCard.csproj.AssemblyReference.cache
+C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\Dictionary3.baml

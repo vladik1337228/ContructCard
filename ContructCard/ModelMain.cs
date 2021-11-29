@@ -104,12 +104,14 @@ namespace ContructCard
         public int TextFontSize { get; set; }
         public int AlignmentX { get; set; }
         public double Scale { get; set; }
+        public bool SecondSkill { get; set; }
+        public int SkillCard2 { get; set; }
 
         public CardSerialization()
         {
         }
 
-        public CardSerialization(int skillCard, int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale)
+        public CardSerialization(int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, int skillCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale, bool secondSkill, int skillCard2)
         {
             Dmg = dmg;
             Hp = hp;
@@ -117,6 +119,7 @@ namespace ContructCard
             NumberCard = numberCard;
             Mana = mana;
             TypeCard = typeCard;
+            SkillCard = skillCard;
             TextCard = textCard;
             PathImage = pathImage;
             PatternCard = patternCard;
@@ -124,7 +127,8 @@ namespace ContructCard
             TextFontSize = textFontSize;
             AlignmentX = alignmentX;
             Scale = scale;
-            SkillCard = skillCard;
+            SecondSkill = secondSkill;
+            SkillCard2 = skillCard2;
         }
     }
 
@@ -171,17 +175,19 @@ namespace ContructCard
         public int TitleFontSize { get { return cardSerialization.TitleFontSize; } set { cardSerialization.TitleFontSize = value; OnPropertyChanged("TitleFontSize"); } }
         public int TextFontSize { get { return cardSerialization.TextFontSize; } set { cardSerialization.TextFontSize = value; OnPropertyChanged("TextFontSize"); } }
         public int SkillCard { get { return cardSerialization.SkillCard; } set { cardSerialization.SkillCard = value; OnPropertyChanged("SkillCard"); } }
+        public bool SecondSkill { get { return cardSerialization.SecondSkill; } set { cardSerialization.SecondSkill = value; OnPropertyChanged("SecondSkill"); } }
+        public int SkillCard2 { get { return cardSerialization.SkillCard2; } set { cardSerialization.SkillCard2 = value; OnPropertyChanged("SkillCard2"); } }
 
 
         public ViewModelMain()
         {
-
             cardSerialization = new CardSerialization();
             modelMain = new ModelMain();
             Cards = new Cards();
             Skills = new Skills(); 
 
             ImageY = 1.0;
+            SecondSkill = false;
 
             CollectionSizeTitle = new ObservableCollection<SizeFont>();
             for (int i = 12; i <= 22; i += 2)
@@ -195,6 +201,8 @@ namespace ContructCard
 
             ImagePath = fileInfo.FullName;
             OriginalImagePath = fileInfo.FullName;
+
+            ChangePattern(new Uri("Dictionary2.xaml", UriKind.Relative));
 
             NuberCards();
         }
@@ -433,6 +441,8 @@ namespace ContructCard
                         ImageY = cardSerialization.Scale;
                         ImagePath = cardSerialization.PathImage;
                         SkillCard = cardSerialization.SkillCard;
+                        SecondSkill = cardSerialization.SecondSkill;
+                        SkillCard2 = cardSerialization.SkillCard2;
                     }
                     NuberCards();
                 }));
@@ -471,15 +481,72 @@ namespace ContructCard
             if (state != DismPackageFeatureState.Installed)
             {
                 Process psi = new Process();
-                //Имя запускаемого приложения
                 psi.StartInfo.FileName = "cmd";
-                //команда, которую надо выполнить
                 psi.StartInfo.Arguments = @"/c Dism /Online /Enable-Feature /FeatureName:Printing-PrintToPDFServices-Features";
-                //  /c - после выполнения команды консоль закроется
-                //  /к - не закрывать консоль после выполнения команды
                 psi.Start();
                 psi.WaitForExit();
             }
+        }
+
+        private CardCommand patternCardChangePatter;
+        public CardCommand PatternCardChangePatter
+        {
+            get
+            {
+                return patternCardChangePatter ?? (patternCardChangePatter = new CardCommand(obj =>
+                {
+                    ChangePattern(Cards.CollectionCard[PatternCard].PathPattern);
+
+                }));
+            }
+        }
+
+
+        private CardCommand patternSkillChangePatter;
+        public CardCommand PatternSkillChangePatter
+        {
+            get
+            {
+                return patternSkillChangePatter ?? (patternSkillChangePatter = new CardCommand(obj =>
+                {
+                    ChangePattern(Skills.CollectionSkill[SkillCard].PathPattern);
+                    PatternCard = 0;
+                }));
+            }
+        }
+
+        private CardCommand secondSkillCheck;
+        public CardCommand SecondSkillCheck
+        {
+            get
+            {
+                return secondSkillCheck ?? (secondSkillCheck = new CardCommand(obj =>
+                {
+                    if (SecondSkill)
+                    {
+                        foreach (var item in Skills.CollectionSkill)
+                            item.PathPattern = new Uri("Dictionary3.xaml", UriKind.Relative);
+
+                        Cards.CollectionCard[0].PathPattern = new Uri("Dictionary3.xaml", UriKind.Relative);
+                    }
+                    else
+                    {
+                        foreach (var item in Skills.CollectionSkill)
+                            item.PathPattern = new Uri("Dictionary2.xaml", UriKind.Relative);
+
+                        Cards.CollectionCard[0].PathPattern = new Uri("Dictionary2.xaml", UriKind.Relative);
+                    }
+
+                    ChangePattern(Skills.CollectionSkill[0].PathPattern);
+                }));
+            }
+        }
+
+        public void ChangePattern(Uri uri)
+        {
+            ResourceDictionary resourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

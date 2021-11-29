@@ -36,19 +36,8 @@ namespace ContructCard
             
             viewModelMain.Cards.CollectionCard.Add(
                 new Card("Шаблон персонажа", @"/PersonalPattern.png", new Uri("Dictionary1.xaml", UriKind.Relative), "Карта персонажа. Уникальна. Выбирается в начале игры. Влияет на стиль игры."));
-           
-            comboBox1.SelectionChanged += ComboBox1_SelectionChanged;
+
             DataContext = viewModelMain;
-        }
-
-        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Card card = (Card)comboBox1.SelectedItem;
-
-            ResourceDictionary resourceDictionary = Application.LoadComponent(card.PathPattern) as ResourceDictionary;
-
-            Application.Current.Resources.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
     }
 }

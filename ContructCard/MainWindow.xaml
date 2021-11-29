@@ -33,9 +33,15 @@
             <ColumnDefinition Width="128*" MaxWidth="128" MinWidth="128"/>
             <ColumnDefinition Width="100*" MinWidth="100" MaxWidth="100"/>
             <ColumnDefinition Width="178*" MinWidth="100"/>
-            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="72*" MinWidth="100"/>
+            <ColumnDefinition Width="59*" MinWidth="100"/>
         </Grid.ColumnDefinitions>
         <ComboBox SelectedIndex="{Binding PatternCard}" ItemsSource="{Binding Cards.CollectionCard}" VerticalContentAlignment="Top" Grid.Column="1" Grid.Row="0" x:Name="comboBox1" Background="#FFA13535" MinHeight="30" MaxHeight="30" Margin="10,10,10,10" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal" Grid.ColumnSpan="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding PatternCardChangePatter}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Label VerticalAlignment="Top" Content="{Binding NameCard}" ToolTip="{Binding ToolTipMessage}">
@@ -59,7 +65,8 @@
                     </ImageBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Image Style="{DynamicResource ImageVisible}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill, Path=SelectedItem.PathImage}" x:Name="imageSkill" Height="54" Width="56" Canvas.Left="100" Canvas.Top="261" />
+            <Image Style="{DynamicResource ImageVisible}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill, Path=SelectedItem.PathImage}" x:Name="imageSkill" Canvas.Left="100" Canvas.Top="261" />
+            <Image Style="{DynamicResource ImageVisible2}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill2, Path=SelectedItem.PathImage}" x:Name="imageSkill2"/>
             <TextBox Style="{DynamicResource TextBoxSettings}" FontFamily="./#Fixedsys Excelsior 3.01" Focusable="False" FontSize="{Binding ElementName=FontSizeBox, Path=SelectedItem.FontSize}" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=textbox, Path=Text}" Panel.ZIndex="1001" Grid.Row="4" Grid.Column="0" Canvas.Left="33" Width="194" BorderBrush="{x:Null}" Background="{x:Null}"/>
             <Label Style="{DynamicResource LabelText}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=3}" Grid.Row="1" Grid.RowSpan="2" Width="39" Canvas.Top="16" Canvas.Left="181" Height="24"/>
             <Label Style="{DynamicResource LabelVisible}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider1, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" Canvas.Left="175" Canvas.Top="282" Width="46"/>
@@ -104,7 +111,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label Content="Font size title" Grid.Row="7" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button Command="{Binding OpenDialog}" Grid.Column="3" Grid.Row="0" Margin="12,12,12,12" Content="Load photo" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="2"/>
+        <Button Command="{Binding OpenDialog}" Grid.Column="3" Grid.Row="0" Margin="12,12,12,12" Content="Load photo" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="3"/>
         <ComboBox SelectedIndex="{Binding TypeCard}" x:Name="typeCard" FontWeight="Bold" FontSize="14" Grid.Row="1" Grid.Column="3" Margin="12,5,5,5">
             <ComboBoxItem Content="Standart" VerticalAlignment="Center" FontWeight="Bold"/>
             <ComboBoxItem Content="Rare" VerticalAlignment="Center" FontWeight="Bold"/>
@@ -114,6 +121,11 @@
         </ComboBox>
         <Label Grid.Row="1" Grid.Column="4" Content="Type card" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <ComboBox SelectedIndex="{Binding SkillCard}" ItemsSource="{Binding Skills.CollectionSkill}" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="2" x:Name="comboBoxSkill" MinHeight="30" MaxHeight="30" Margin="12,5,5,5" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding PatternSkillChangePatter}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Image VerticalAlignment="Top" Source="{Binding PathImage}" ToolTip="{Binding ToolTipMessage}">
@@ -122,7 +134,33 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label Content="Skill" Grid.Row="2" Grid.Column="4" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"/>
-        <Button Command="{Binding SaveElements}" Grid.Column="3" Grid.Row="6" Margin="12,5,12,5" Content="Save pattern" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
-        <Button Command="{Binding LoadElements}" Grid.Column="3" Grid.Row="7" Margin="12,5,12,5" Content="Load pattern" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
+
+        <ComboBox Style="{DynamicResource ComboBoxVisible}" SelectedIndex="{Binding SkillCard2}" ItemsSource="{Binding Skills.CollectionSkill}" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="3" x:Name="comboBoxSkill2" MinHeight="30" MaxHeight="30" Margin="12,5,5,5" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding PatternSkillChangePatter}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Image VerticalAlignment="Top" Source="{Binding PathImage}" ToolTip="{Binding ToolTipMessage}">
+                    </Image>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Style="{DynamicResource UnLabelVisible}" Content="Second Skill" Grid.Row="3" Grid.Column="4" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"/>
+
+        <Button Command="{Binding SaveElements}" Grid.Column="3" Grid.Row="6" Margin="12,5,12,5" Content="Save pattern" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="3"/>
+        <Button Command="{Binding LoadElements}" Grid.Column="3" Grid.Row="7" Margin="12,5,12,6" Content="Load pattern" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="3"/>
+        <CheckBox IsChecked="{Binding SecondSkill}" x:Name="checkBox" Grid.Row="2" Grid.Column="5" Content="Second skill"  VerticalAlignment="Center">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding SecondSkillCheck}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding SecondSkillCheck}"/>s
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </CheckBox>
     </Grid>
 </Window>
