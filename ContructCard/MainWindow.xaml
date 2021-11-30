@@ -32,9 +32,9 @@
             <ColumnDefinition Width="263*" MaxWidth="263" MinWidth="263"/>
             <ColumnDefinition Width="128*" MaxWidth="128" MinWidth="128"/>
             <ColumnDefinition Width="100*" MinWidth="100" MaxWidth="100"/>
-            <ColumnDefinition Width="178*" MinWidth="100"/>
-            <ColumnDefinition Width="72*" MinWidth="100"/>
-            <ColumnDefinition Width="59*" MinWidth="100" MaxWidth="500"/>
+            <ColumnDefinition Width="178*" MinWidth="100" MaxWidth="200"/>
+            <ColumnDefinition Width="72*" MinWidth="100" MaxWidth="100" />
+            <ColumnDefinition Width="59*" MinWidth="100" MaxWidth="200"/>
         </Grid.ColumnDefinitions>
         <ComboBox SelectedIndex="{Binding PatternCard}" ItemsSource="{Binding Cards.CollectionCard}" VerticalContentAlignment="Top" Grid.Column="1" Grid.Row="0" x:Name="comboBox1" Background="#FFA13535" MinHeight="30" MaxHeight="30" Margin="10,10,10,10" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
@@ -177,9 +177,9 @@
                 <Paragraph>
                     <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
                         Дорогие создатели карт прошу вас создавать сбалансированные карты не имеющие огрмный перевес в стоимости, характеристиках и свойствах.
-                        Выбирайте редкость карты (Rarity) с умом и если карта по своей сути простая не выставлйся тип "Legendary". Не перебарщиваете
+                        Выбирайте редкость карты (Rarity) с умом и если карта по своей сути простая не выставляйте тип "Legendary". Не перебарщивайте
                         с огромным количеством свойств, как с текстовыми свойствами, так и символьными. Огромная просьба создавать не только имбовые и супер сильные карты,
-                        которые предназначены для конца или серидины игры, но и обратить свои силы на создание простых карт, которые будут использоваться
+                        которые предназначены для конца или серидины игры, но и обратите свои силы на создание простых карт, которые будут использоваться
                         в начале игры.
                     </Run>
                 </Paragraph>
