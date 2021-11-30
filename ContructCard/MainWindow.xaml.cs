@@ -32,10 +32,13 @@ namespace ContructCard
             ViewModelMain viewModelMain = new ViewModelMain();
 
             viewModelMain.Cards.CollectionCard.Add(
-                new Card("Стандартный шаблон", @"/StandartPattern.png", new Uri("Dictionary2.xaml", UriKind.Relative), "Карта игральной колоды. Неуникальна. Составляет игральную колоду игрока."));
+                new Card("Шаблон Стандартной карты", @"/StandartPattern.png", new Uri("Dictionary2.xaml", UriKind.Relative), "Карта игральной колоды. Неуникальна. Составляет игральную колоду игрока."));
             
             viewModelMain.Cards.CollectionCard.Add(
-                new Card("Шаблон персонажа", @"/PersonalPattern.png", new Uri("Dictionary1.xaml", UriKind.Relative), "Карта персонажа. Уникальна. Выбирается в начале игры. Влияет на стиль игры."));
+                new Card("Шаблон карты персонажа", @"/PersonalPattern.png", new Uri("Dictionary1.xaml", UriKind.Relative), "Карта персонажа. Уникальна. Выбирается в начале игры. Влияет на стиль игры."));
+
+            viewModelMain.Cards.CollectionCard.Add(
+                new Card("Шаблон карты общей колоды", @"/Additional.png", new Uri("Dictionary5.xaml", UriKind.Relative), "Карта общей колоды. Находится в общей колоде. Служит для дополнения игральных механик."));
 
             DataContext = viewModelMain;
         }

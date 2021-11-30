@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Additional.png" />
     <None Remove="card.png" />
     <None Remove="card1.png" />
     <None Remove="card2.jpg" />
@@ -37,6 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Additional.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Dictionary1.xaml" />
     <Resource Include="Dictionary2.xaml">
       <Generator>MSBuild:Compile</Generator>

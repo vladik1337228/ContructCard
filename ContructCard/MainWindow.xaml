@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800" SizeToContent="WidthAndHeight" MinHeight="470">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding Close}"/>
+            <i:InvokeCommandAction Command="{Binding Close}" CommandParameter="{Binding ElementName=imageBrush}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
@@ -34,7 +34,7 @@
             <ColumnDefinition Width="100*" MinWidth="100" MaxWidth="100"/>
             <ColumnDefinition Width="178*" MinWidth="100"/>
             <ColumnDefinition Width="72*" MinWidth="100"/>
-            <ColumnDefinition Width="59*" MinWidth="100"/>
+            <ColumnDefinition Width="59*" MinWidth="100" MaxWidth="500"/>
         </Grid.ColumnDefinitions>
         <ComboBox SelectedIndex="{Binding PatternCard}" ItemsSource="{Binding Cards.CollectionCard}" VerticalContentAlignment="Top" Grid.Column="1" Grid.Row="0" x:Name="comboBox1" Background="#FFA13535" MinHeight="30" MaxHeight="30" Margin="10,10,10,10" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
@@ -67,14 +67,14 @@
             </Rectangle>
             <Image Style="{DynamicResource ImageVisible}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill, Path=SelectedItem.PathImage}" x:Name="imageSkill" Canvas.Left="100" Canvas.Top="261" />
             <Image Style="{DynamicResource ImageVisible2}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill2, Path=SelectedItem.PathImage}" x:Name="imageSkill2"/>
-            <TextBox ToolTip="Dmg после взросления" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="0" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="98" Canvas.Top="302" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
-            <TextBox ToolTip="Длительность взросления в ходах" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="0" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="142" Canvas.Top="259" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
-            <TextBox ToolTip="HP после взросления" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="0" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="142" Canvas.Top="302" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
+            <TextBox ToolTip="Dmg после взросления" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="{Binding DmgDop}" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="98" Canvas.Top="302" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
+            <TextBox ToolTip="Длительность взросления в ходах" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="{Binding CountStepDop}" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="142" Canvas.Top="259" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
+            <TextBox ToolTip="HP после взросления" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="{Binding HPDop}" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="142" Canvas.Top="302" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
             <TextBox Style="{DynamicResource TextBoxSettings}" FontFamily="./#Fixedsys Excelsior 3.01" Focusable="False" FontSize="{Binding ElementName=FontSizeBox, Path=SelectedItem.FontSize}" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=textbox, Path=Text}" Panel.ZIndex="1001" Grid.Row="4" Grid.Column="0" Canvas.Left="33" Width="194" BorderBrush="{x:Null}" Background="{x:Null}"/>
             <Label Style="{DynamicResource LabelText}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=3}" Grid.Row="1" Grid.RowSpan="2" Width="39" Canvas.Top="16" Canvas.Left="181" Height="24"/>
             <Label Style="{DynamicResource LabelVisible}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider1, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" Canvas.Left="175" Canvas.Top="282" Width="46"/>
             <Label Style="{DynamicResource LabelVisible}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch"  Panel.ZIndex="1001" Content="{Binding ElementName=slider2, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" FontStyle="Normal" Canvas.Top="282" Canvas.Left="37" Width="46" Height="47"/>
-            <TextBlock FontFamily="./#Fixedsys Excelsior 3.01" Foreground="Black" TextAlignment="Center" FontSize="{Binding ElementName=FontSizeBoxTitle, Path=SelectedItem.FontSize}" Panel.ZIndex="1001" Text="{Binding ElementName=titleCard, Path=Text}" Width="88" Canvas.Left="83" Canvas.Top="19" Height="19"/>
+            <TextBlock Style="{DynamicResource TitleCardSetting}" FontFamily="./#Fixedsys Excelsior 3.01" Foreground="Black" TextAlignment="Center" FontSize="{Binding ElementName=FontSizeBoxTitle, Path=SelectedItem.FontSize}" Panel.ZIndex="1001" Text="{Binding ElementName=titleCard, Path=Text}" Canvas.Top="19" Height="19"/>
             <TextBlock x:Name="nuber" Style="{DynamicResource TargetTextBloc}" FontFamily="./#Fixedsys Excelsior 3.01" Panel.ZIndex="1001" Foreground="Black" TextAlignment="Center" Text="{Binding NumberCard, Converter={StaticResource convertSharp}}" Canvas.Left="31" Canvas.Top="20" Height="15" Width="33"/>
             <TextBlock Style="{DynamicResource TargetTextBlocVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Panel.ZIndex="1001" Foreground="White" TextAlignment="Center" Text="{Binding ElementName=typeCard, Path=SelectedItem.Content}" Canvas.Left="26" Canvas.Top="3" Height="13" Width="Auto"/>
         </Canvas>
@@ -122,7 +122,7 @@
             <ComboBoxItem Content="Legendary" VerticalAlignment="Center" FontWeight="Bold"/>
             <ComboBoxItem Content="Additional" VerticalAlignment="Center" FontWeight="Bold"/>
         </ComboBox>
-        <Label Grid.Row="1" Grid.Column="4" Content="Type card" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="4" Content="Rarity" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <ComboBox SelectedIndex="{Binding SkillCard}" ItemsSource="{Binding Skills.CollectionSkill}" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="2" x:Name="comboBoxSkill" MinHeight="30" MaxHeight="30" Margin="12,5,5,5" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
@@ -165,10 +165,81 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
-        <FlowDocumentScrollViewer x:Name="reader" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Margin="5">
+        <FlowDocumentScrollViewer x:Name="reader" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Margin="5,5,5,10" Grid.RowSpan="2">
             <FlowDocument>
-                <Paragraph FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                <Paragraph FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12" FontWeight="Bold">
                     Обращение к создателям карт.
+                </Paragraph>
+                <Paragraph FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                    Создаваемые вами карты будут учавствовать в разрабатываемой игре. Игра представляет собой карточную дуэль - смесь HartStoun 
+                    и Inscription. Далее будут описываться основные понятия игры, что в дальнейшем поможет в создании карт.
+                </Paragraph>
+                <Paragraph>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Дорогие создатели карт прошу вас создавать сбалансированные карты не имеющие огрмный перевес в стоимости, характеристиках и свойствах.
+                        Выбирайте редкость карты (Rarity) с умом и если карта по своей сути простая не выставлйся тип "Legendary". Не перебарщиваете
+                        с огромным количеством свойств, как с текстовыми свойствами, так и символьными. Огромная просьба создавать не только имбовые и супер сильные карты,
+                        которые предназначены для конца или серидины игры, но и обратить свои силы на создание простых карт, которые будут использоваться
+                        в начале игры.
+                    </Run>
+                </Paragraph>
+                <Paragraph FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12" FontWeight="Bold">
+                    Основные понятия
+                </Paragraph>
+                <Paragraph FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Ход - время в течении которого игрок выполнят некоторые действия. Ход оканчивается тогда, когда игрок совершил
+                        все действия, которые хотел или он больше ничего не может сделать.
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Параметры (Dmg, HP, Mana) - исчисляются в значениях от 0 до 10;
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Текстовое свойство (Text card) - располагается ниже изображения карты и является уникальной возможностю для вас придумать
+                        свою личную неповторимую особенность для создаваемой карты. Если вы предполагаете, что ваша карта не будет иметь текстового свойства 
+                        вы можете оставить его пустым или добавить художественное описание для карты.
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Шаблон карты - уникальный шаблон для различных видов карт. В игре есть три шаблона карт следовательно и три вида:
+                        Стандартная, Карта персонажа, Карта общей колоды.
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Стандартная - карта данного вида является основой игры именно эти карты игроки разыгрвают на стол и выстраивают 
+                        свои стратегии с их использованием. Стандартная карта имеет параметр редкости (Rarity). Стандартная карта имеет 
+                        свойство(а) (Skill). Так же параметр Second skill.
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Карта персонажа - карта данного вида имеет лишь изображение, название и текстовое свойство. Данный тип карты не учавствует 
+                        в разыгровке на стол, а выбирается игроками в начале сражения. Текстовое свойство данной карты должно быть уникальным
+                        и влиять на стиль игры игрока.
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Карта общей колоды - карты данного вида находится в общей колоде. В данной колоде располагаются различные рядовые карты. Например
+                        "Карта дополнительной манны" или "Карта несдержанной блевоты". Эти карты не имеют параметров жизни и урона, но стоимость у них может
+                        присутствовать. Я бы сказал в этой колоде располагаются карты эффектов лишь дополняющие вашие возможности, а не являющиеся их основой.
+                        Эти карты не могут сражаться, но могут как-то доплнять ваши карта стандартного вида.
+                    </Run>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run FontFamily="./#Fixedsys Excelsior 3.01" FontSize="12">
+                        Символьные свойства (Skill) (Second Skill) - это графичееские (символьные) свойства карты. Ваша карта может обходиться и без них
+                        они существует лишь для описание некоторорых простых и не очень свойств. Так же на базе данных свойств вы можете придумать свои текстовые свойства.
+                        Помните ваша карта не обязана иметь символьное(ые) свойства или текстовые свойства. Свойста лишь дополнение
+                        возможностей вашей карты. Максимальное количество символьных свойств (Skill) у карты - 2. Лишь в некоторых случаях программа будет 
+                        отказываться выставлять второе свойство.
+                    </Run>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>

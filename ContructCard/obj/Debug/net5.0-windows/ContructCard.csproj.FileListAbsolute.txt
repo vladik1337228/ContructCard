@@ -51,3 +51,4 @@ C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\Contruct
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\ContructCard.csproj.AssemblyReference.cache
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\Dictionary3.baml
 C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\Dictionary4.baml
+C:\Users\VYC\Desktop\ContructCard\ContructCard\obj\Debug\net5.0-windows\Dictionary5.baml

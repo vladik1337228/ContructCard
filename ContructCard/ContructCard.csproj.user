@@ -19,6 +19,9 @@
     <Page Update="Dictionary4.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Dictionary5.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

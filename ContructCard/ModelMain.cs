@@ -106,12 +106,15 @@ namespace ContructCard
         public double Scale { get; set; }
         public bool SecondSkill { get; set; }
         public int SkillCard2 { get; set; }
+        public string DmgDop { get; set; }
+        public string HPDop { get; set; }
+        public string CountStepDop { get; set; }
 
         public CardSerialization()
         {
         }
 
-        public CardSerialization(int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, int skillCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale, bool secondSkill, int skillCard2)
+        public CardSerialization(int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, int skillCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale, bool secondSkill, int skillCard2, string dmgDop, string hPDop, string countStepDop)
         {
             Dmg = dmg;
             Hp = hp;
@@ -129,6 +132,9 @@ namespace ContructCard
             Scale = scale;
             SecondSkill = secondSkill;
             SkillCard2 = skillCard2;
+            DmgDop = dmgDop;
+            HPDop = hPDop;
+            CountStepDop = countStepDop;
         }
     }
 
@@ -177,7 +183,9 @@ namespace ContructCard
         public int SkillCard { get { return cardSerialization.SkillCard; } set { cardSerialization.SkillCard = value; OnPropertyChanged("SkillCard"); } }
         public bool SecondSkill { get { return cardSerialization.SecondSkill; } set { cardSerialization.SecondSkill = value; OnPropertyChanged("SecondSkill"); } }
         public int SkillCard2 { get { return cardSerialization.SkillCard2; } set { cardSerialization.SkillCard2 = value; OnPropertyChanged("SkillCard2"); } }
-
+        public string DmgDop { get { return cardSerialization.DmgDop; } set { cardSerialization.DmgDop = value; OnPropertyChanged("DmgDop"); } }
+        public string HPDop { get { return cardSerialization.HPDop; } set { cardSerialization.HPDop = value; OnPropertyChanged("HPDop"); } }
+        public string CountStepDop { get { return cardSerialization.CountStepDop; } set { cardSerialization.CountStepDop = value; OnPropertyChanged("CountStepDop"); } }
 
         private string Uri;
 
@@ -190,6 +198,9 @@ namespace ContructCard
 
             ImageY = 1.0;
             SecondSkill = false;
+            DmgDop = "0";
+            HPDop = "0";
+            CountStepDop = "0";
 
             CollectionSizeTitle = new ObservableCollection<SizeFont>();
             for (int i = 12; i <= 22; i += 2)
@@ -398,6 +409,9 @@ namespace ContructCard
             {
                 return close ?? (close = new CardCommand(obj =>
                 {
+                    ImageBrush image = obj as ImageBrush;
+                    image.ClearValue(UIElement.UidProperty);
+
                     DirectoryInfo directoryInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ConstructorVladika");
                     var list = directoryInfo.GetFiles();
                     foreach (var item in list)
@@ -446,6 +460,9 @@ namespace ContructCard
                         SkillCard = cardSerialization.SkillCard;
                         SecondSkill = cardSerialization.SecondSkill;
                         SkillCard2 = cardSerialization.SkillCard2;
+                        DmgDop = cardSerialization.DmgDop;
+                        HPDop = cardSerialization.HPDop;
+                        CountStepDop = cardSerialization.CountStepDop;
                     }
                     NuberCards();
                 }));
