@@ -37,9 +37,9 @@ namespace ContructCard
 
             DirectoryInfo directoryInfo = new DirectoryInfo("Skills");
             foreach (var item in directoryInfo.GetFiles())
-            {
                 CollectionSkill.Add(new Skill(item.Name.Split('_').First(), item.FullName, new Uri("Dictionary2.xaml", UriKind.Relative), item.Name.Split('_').Last().Replace(".png", "")));
-            }
+
+            CollectionSkill.First(x => x.NameSkill == "Evolve").PathPattern = new Uri("Dictionary4.xaml", UriKind.Relative);
         }
     }
 

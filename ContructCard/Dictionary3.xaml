@@ -38,4 +38,7 @@
     <Style x:Key="UnLabelVisible" TargetType="Label">
         <Setter Property="Visibility" Value="Visible"/>
     </Style>
+    <Style x:Key="TextBoxVisible" TargetType="TextBox">
+        <Setter Property="Visibility" Value="Hidden"/>
+    </Style>
 </ResourceDictionary>

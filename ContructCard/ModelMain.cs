@@ -179,6 +179,8 @@ namespace ContructCard
         public int SkillCard2 { get { return cardSerialization.SkillCard2; } set { cardSerialization.SkillCard2 = value; OnPropertyChanged("SkillCard2"); } }
 
 
+        private string Uri;
+
         public ViewModelMain()
         {
             cardSerialization = new CardSerialization();
@@ -201,6 +203,7 @@ namespace ContructCard
 
             ImagePath = fileInfo.FullName;
             OriginalImagePath = fileInfo.FullName;
+
 
             ChangePattern(new Uri("Dictionary2.xaml", UriKind.Relative));
 
@@ -509,8 +512,13 @@ namespace ContructCard
             {
                 return patternSkillChangePatter ?? (patternSkillChangePatter = new CardCommand(obj =>
                 {
-                    ChangePattern(Skills.CollectionSkill[SkillCard].PathPattern);
+                    Skill ski = obj as Skill;
+
+                    ChangePattern(ski.PathPattern);
                     PatternCard = 0;
+
+                    if (ski.NameSkill == "Evolve")
+                        SecondSkill = false;
                 }));
             }
         }
@@ -527,6 +535,7 @@ namespace ContructCard
                         foreach (var item in Skills.CollectionSkill)
                             item.PathPattern = new Uri("Dictionary3.xaml", UriKind.Relative);
 
+                        Skills.CollectionSkill.First(x => x.NameSkill == "Evolve").PathPattern = new Uri("Dictionary4.xaml", UriKind.Relative);
                         Cards.CollectionCard[0].PathPattern = new Uri("Dictionary3.xaml", UriKind.Relative);
                     }
                     else
@@ -534,19 +543,25 @@ namespace ContructCard
                         foreach (var item in Skills.CollectionSkill)
                             item.PathPattern = new Uri("Dictionary2.xaml", UriKind.Relative);
 
+                        Skills.CollectionSkill.First(x => x.NameSkill == "Evolve").PathPattern = new Uri("Dictionary4.xaml", UriKind.Relative);
                         Cards.CollectionCard[0].PathPattern = new Uri("Dictionary2.xaml", UriKind.Relative);
+                        SkillCard2 = 0;
                     }
 
-                    ChangePattern(Skills.CollectionSkill[0].PathPattern);
+                    ChangePattern(Skills.CollectionSkill[SkillCard].PathPattern);
                 }));
             }
         }
 
         public void ChangePattern(Uri uri)
         {
-            ResourceDictionary resourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
-            Application.Current.Resources.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            if (uri.OriginalString != Uri)
+            {
+                ResourceDictionary resourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
+                Application.Current.Resources.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+                Uri = uri.OriginalString;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

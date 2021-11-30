@@ -67,6 +67,9 @@
             </Rectangle>
             <Image Style="{DynamicResource ImageVisible}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill, Path=SelectedItem.PathImage}" x:Name="imageSkill" Canvas.Left="100" Canvas.Top="261" />
             <Image Style="{DynamicResource ImageVisible2}" Panel.ZIndex="1001" Source="{Binding ElementName=comboBoxSkill2, Path=SelectedItem.PathImage}" x:Name="imageSkill2"/>
+            <TextBox ToolTip="Dmg после взросления" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="0" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="98" Canvas.Top="302" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
+            <TextBox ToolTip="Длительность взросления в ходах" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="0" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="142" Canvas.Top="259" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
+            <TextBox ToolTip="HP после взросления" Style="{DynamicResource TextBoxVisible}" FontFamily="./#Fixedsys Excelsior 3.01" Text="0" Panel.ZIndex="1001" Width="16" Height="16" Canvas.Left="142" Canvas.Top="302" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13"/>
             <TextBox Style="{DynamicResource TextBoxSettings}" FontFamily="./#Fixedsys Excelsior 3.01" Focusable="False" FontSize="{Binding ElementName=FontSizeBox, Path=SelectedItem.FontSize}" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=textbox, Path=Text}" Panel.ZIndex="1001" Grid.Row="4" Grid.Column="0" Canvas.Left="33" Width="194" BorderBrush="{x:Null}" Background="{x:Null}"/>
             <Label Style="{DynamicResource LabelText}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=3}" Grid.Row="1" Grid.RowSpan="2" Width="39" Canvas.Top="16" Canvas.Left="181" Height="24"/>
             <Label Style="{DynamicResource LabelVisible}" FontFamily="./#Perfocard 4F Bold" Foreground="Red" HorizontalContentAlignment="Center"  VerticalContentAlignment="Stretch" Panel.ZIndex="1001" Content="{Binding ElementName=slider1, Path=Value, Converter={StaticResource myConverter}, ConverterParameter=2}" Grid.Row="4" FontSize="25" Canvas.Left="175" Canvas.Top="282" Width="46"/>
@@ -123,7 +126,7 @@
         <ComboBox SelectedIndex="{Binding SkillCard}" ItemsSource="{Binding Skills.CollectionSkill}" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="2" x:Name="comboBoxSkill" MinHeight="30" MaxHeight="30" Margin="12,5,5,5" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding PatternSkillChangePatter}"/>
+                    <i:InvokeCommandAction Command="{Binding PatternSkillChangePatter}" CommandParameter="{Binding ElementName=comboBoxSkill, Path=SelectedItem}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ComboBox.ItemTemplate>
@@ -138,7 +141,7 @@
         <ComboBox Style="{DynamicResource ComboBoxVisible}" SelectedIndex="{Binding SkillCard2}" ItemsSource="{Binding Skills.CollectionSkill}" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="3" x:Name="comboBoxSkill2" MinHeight="30" MaxHeight="30" Margin="12,5,5,5" BorderBrush="#FFD93434" Foreground="Black" FontSize="11" FontWeight="Bold" FontStyle="Normal">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding PatternSkillChangePatter}"/>
+                    <i:InvokeCommandAction Command="{Binding PatternSkillChangePatter}" CommandParameter="{Binding ElementName=comboBoxSkill2, Path=SelectedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ComboBox.ItemTemplate>

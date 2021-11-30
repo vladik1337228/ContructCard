@@ -35,6 +35,6 @@
         <Setter Property="Visibility" Value="Hidden"/>
     </Style>
     <Style x:Key="TextBoxVisible" TargetType="TextBox">
-        <Setter Property="Visibility" Value="Hidden"/>
+        <Setter Property="Visibility" Value="Visible"/>
     </Style>
 </ResourceDictionary>
