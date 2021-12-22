@@ -12,9 +12,9 @@
     <Style x:Key="LabelText" TargetType="Label">
         <Setter Property="Visibility" Value="Hidden"/>
     </Style>
-    <Style x:Key="TextBoxSettings" TargetType="TextBox">
-        <Setter Property="Canvas.Top" Value="245"/>
-        <Setter Property="Height" Value="74"/>
+    <Style x:Key="TextBoxSettings" TargetType="FlowDocumentScrollViewer">
+        <Setter Property="Canvas.Top" Value="228"/>
+        <Setter Property="Height" Value="95"/>
     </Style>
     <Style x:Key="RectangleSettings" TargetType="Rectangle">
         <Setter Property="Canvas.Top" Value="39"/>

@@ -1,15 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "6ReNP0Ml7j8VG4LlHSVHJrDyjeakO0nyMID+ItY3EW2pu4Z3eLmCMdT1AkBxN6cgyRFCakRrjisuQ5RpXtDoDw==",
+  "dgSpecHash": "Nt0x8c/+/zBNyStaVcpYLiOfOMhRxKq33/IXxoT2IW5yhMYEVny7Cl+n12eDX0eu6F1nTWCU7VoRDR1dvyimvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\VYC\\Desktop\\ContructCard\\ContructCard\\ContructCard.csproj",
+  "projectFilePath": "C:\\Users\\VYC\\Desktop\\ContructCard v3.0\\ContructCard\\ContructCard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VYC\\.nuget\\packages\\google.apis\\1.55.0\\google.apis.1.55.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\google.apis.auth\\1.55.0\\google.apis.auth.1.55.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\google.apis.core\\1.55.0\\google.apis.core.1.55.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\google.apis.drive.v2\\1.55.0.2502\\google.apis.drive.v2.1.55.0.2502.nupkg.sha512",
-    "C:\\Users\\VYC\\.nuget\\packages\\magick.net-q16-anycpu\\8.4.0\\magick.net-q16-anycpu.8.4.0.nupkg.sha512",
-    "C:\\Users\\VYC\\.nuget\\packages\\magick.net.core\\8.4.0\\magick.net.core.8.4.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\microsoft.dism\\2.4.0\\microsoft.dism.2.4.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\VYC\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",

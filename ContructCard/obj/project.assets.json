@@ -54,49 +54,6 @@
           "lib/netstandard2.0/Google.Apis.Drive.v2.dll": {}
         }
       },
-      "Magick.NET-Q16-AnyCPU/8.4.0": {
-        "type": "package",
-        "dependencies": {
-          "Magick.NET.Core": "8.4.0"
-        },
-        "compile": {
-          "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-musl-x64/native/Magick.Native-Q16-x64.dll.so": {
-            "assetType": "native",
-            "rid": "linux-musl-x64"
-          },
-          "runtimes/linux-x64/native/Magick.Native-Q16-x64.dll.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/native/Magick.Native-Q16-x64.dll.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-x64/native/Magick.Native-Q16-x64.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/Magick.Native-Q16-x86.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          }
-        }
-      },
-      "Magick.NET.Core/8.4.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard21/Magick.NET.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard21/Magick.NET.Core.dll": {}
-        }
-      },
       "Microsoft.Dism/2.4.0": {
         "type": "package",
         "dependencies": {
@@ -400,52 +357,6 @@
         "lib/netstandard2.0/Google.Apis.Drive.v2.dll",
         "lib/netstandard2.0/Google.Apis.Drive.v2.pdb",
         "lib/netstandard2.0/Google.Apis.Drive.v2.xml"
-      ]
-    },
-    "Magick.NET-Q16-AnyCPU/8.4.0": {
-      "sha512": "MzXOnsYQS9DkDt0yKbd+laLFLojPcLrH59qZmKijl42vZrzpV3PiOUnMLuvaGgtIOAWpxAjwSnKkxMRLSbugVg==",
-      "type": "package",
-      "path": "magick.net-q16-anycpu/8.4.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Magick.NET.icon.png",
-        "Notice.linux-musl.txt",
-        "Notice.linux.txt",
-        "Notice.osx.txt",
-        "Notice.win.txt",
-        "lib/net20/Magick.NET-Q16-AnyCPU.dll",
-        "lib/net20/Magick.NET-Q16-AnyCPU.xml",
-        "lib/netstandard20/Magick.NET-Q16-AnyCPU.dll",
-        "lib/netstandard20/Magick.NET-Q16-AnyCPU.xml",
-        "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll",
-        "lib/netstandard21/Magick.NET-Q16-AnyCPU.xml",
-        "magick.net-q16-anycpu.8.4.0.nupkg.sha512",
-        "magick.net-q16-anycpu.nuspec",
-        "runtimes/linux-musl-x64/native/Magick.Native-Q16-x64.dll.so",
-        "runtimes/linux-x64/native/Magick.Native-Q16-x64.dll.so",
-        "runtimes/osx-x64/native/Magick.Native-Q16-x64.dll.dylib",
-        "runtimes/win-x64/native/Magick.Native-Q16-x64.dll",
-        "runtimes/win-x86/native/Magick.Native-Q16-x86.dll"
-      ]
-    },
-    "Magick.NET.Core/8.4.0": {
-      "sha512": "kSO4NMEj14U5ERMnAoGUvzfRcpqmkjeO93uKcKVqkCIVPJTEF4lgRJ9Jeza5Xx9v/ffNz7ExeGViyhj/2x3e6w==",
-      "type": "package",
-      "path": "magick.net.core/8.4.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Copyright.txt",
-        "Magick.NET.icon.png",
-        "lib/net20/Magick.NET.Core.dll",
-        "lib/net20/Magick.NET.Core.xml",
-        "lib/netstandard20/Magick.NET.Core.dll",
-        "lib/netstandard20/Magick.NET.Core.xml",
-        "lib/netstandard21/Magick.NET.Core.dll",
-        "lib/netstandard21/Magick.NET.Core.xml",
-        "magick.net.core.8.4.0.nupkg.sha512",
-        "magick.net.core.nuspec"
       ]
     },
     "Microsoft.Dism/2.4.0": {
@@ -811,7 +722,6 @@
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
       "Google.Apis.Drive.v2 >= 1.55.0.2502",
-      "Magick.NET-Q16-AnyCPU >= 8.4.0",
       "Microsoft.Dism >= 2.4.0",
       "System.Drawing.Common >= 6.0.0",
       "System.ServiceProcess.ServiceController >= 6.0.0",
@@ -825,11 +735,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\VYC\\Desktop\\ContructCard\\ContructCard\\ContructCard.csproj",
+      "projectUniqueName": "C:\\Users\\VYC\\Desktop\\ContructCard v3.0\\ContructCard\\ContructCard.csproj",
       "projectName": "ContructCard",
-      "projectPath": "C:\\Users\\VYC\\Desktop\\ContructCard\\ContructCard\\ContructCard.csproj",
+      "projectPath": "C:\\Users\\VYC\\Desktop\\ContructCard v3.0\\ContructCard\\ContructCard.csproj",
       "packagesPath": "C:\\Users\\VYC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\VYC\\Desktop\\ContructCard\\ContructCard\\obj\\",
+      "outputPath": "C:\\Users\\VYC\\Desktop\\ContructCard v3.0\\ContructCard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -865,10 +775,6 @@
           "Google.Apis.Drive.v2": {
             "target": "Package",
             "version": "[1.55.0.2502, )"
-          },
-          "Magick.NET-Q16-AnyCPU": {
-            "target": "Package",
-            "version": "[8.4.0, )"
           },
           "Microsoft.Dism": {
             "target": "Package",

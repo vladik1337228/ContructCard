@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ContructCard</id>
+    <version>1.0.0</version>
+    <authors>ContructCard</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net5.0-windows7.0">
+        <dependency id="Google.Apis.Drive.v2" version="1.55.0.2502" exclude="Build,Analyzers" />
+        <dependency id="Magick.NET-Q16-AnyCPU" version="8.4.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Dism" version="2.4.0" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceProcess.ServiceController" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Windows.Interactivity.WPF" version="2.0.20525" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net5.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\ContructCard.runtimeconfig.json" target="lib\net5.0-windows7.0\ContructCard.runtimeconfig.json" />
+    <file src="C:\Users\VYC\Desktop\ContructCard\ContructCard\bin\Debug\net5.0-windows\ContructCard.dll" target="lib\net5.0-windows7.0\ContructCard.dll" />
+  </files>
+</package>

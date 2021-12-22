@@ -21,7 +21,6 @@ using System.Printing;
 using System.Windows.Documents;
 using System.Drawing;
 using System.Drawing.Printing;
-using ImageMagick;
 using System.Windows.Xps.Packaging;
 using System.Windows.Xps;
 using System.IO.Packaging;
@@ -32,9 +31,27 @@ using System.Text.Unicode;
 using System.ServiceProcess;
 using Microsoft.Dism;
 using System.Diagnostics;
+using System.Windows.Markup;
 
 namespace ContructCard
 {
+    public class TextElement
+    {
+        public TextElement(InlineUIContainer inlineUIContainer, int index)
+        {
+            InlineUIContainer = inlineUIContainer;
+            Index = index;
+        }
+
+        public InlineUIContainer InlineUIContainer { get; set; }
+        public int Index { get; set; }
+
+        public TextElement(InlineUIContainer inlineUIContainer)
+        {
+            InlineUIContainer = inlineUIContainer;
+        }
+    }
+
     public class Serialization
     {
         public static void Serialize(CardSerialization cardSerialization)
@@ -54,6 +71,9 @@ namespace ContructCard
                 System.IO.File.Create(saveFileDialog.FileName + "\\card.json").Close();
                 System.IO.File.WriteAllText(saveFileDialog.FileName + "\\card.json", jsonText);
                 System.IO.File.Copy(cardSerialization.PathImage, saveFileDialog.FileName + $"\\card.{cardSerialization.PathImage.Split('.').Last()}");
+                
+                using (FileStream fs = System.IO.File.Open(saveFileDialog.FileName + "\\card.xaml", FileMode.Create))
+                    XamlWriter.Save(cardSerialization.FlowDocument, fs);
             }
         }
 
@@ -70,6 +90,10 @@ namespace ContructCard
             System.IO.File.Create(path + "\\card.json").Close();
             System.IO.File.WriteAllText(path + "\\card.json", jsonText);
             System.IO.File.Copy(cardSerialization.PathImage, path + $"\\card.{cardSerialization.PathImage.Split('.').Last()}");
+
+            using (FileStream fs = System.IO.File.Open(path + "\\card.xaml", FileMode.Create))
+                XamlWriter.Save(cardSerialization.FlowDocument, fs);
+
         }
 
         public static CardSerialization Deserialize()
@@ -81,6 +105,10 @@ namespace ContructCard
             {
                 var obj = JsonSerializer.Deserialize<CardSerialization>(System.IO.File.ReadAllText(openFileDialog.FileName));
                 obj.PathImage = openFileDialog.FileName.Replace(".json", $".{obj.PathImage.Split('.').Last()}");
+
+                using (FileStream fs = System.IO.File.Open(openFileDialog.FileName.Replace(".json", $".xaml"), FileMode.Open))
+                    obj.FlowDocument = (FlowDocument)XamlReader.Load(fs);
+
                 return obj;
             }
             else
@@ -103,39 +131,20 @@ namespace ContructCard
         public int TitleFontSize { get; set; }
         public int TextFontSize { get; set; }
         public int AlignmentX { get; set; }
+        public int AlignmentY { get; set; }
         public double Scale { get; set; }
         public bool SecondSkill { get; set; }
         public int SkillCard2 { get; set; }
         public string DmgDop { get; set; }
         public string HPDop { get; set; }
         public string CountStepDop { get; set; }
+        public List<TextElement> CollectionTextElement;
+        public FlowDocument FlowDocument;
 
         public CardSerialization()
         {
         }
 
-        public CardSerialization(int dmg, int hp, string titleCard, string numberCard, int mana, int typeCard, int skillCard, string textCard, string pathImage, int patternCard, int titleFontSize, int textFontSize, int alignmentX, double scale, bool secondSkill, int skillCard2, string dmgDop, string hPDop, string countStepDop)
-        {
-            Dmg = dmg;
-            Hp = hp;
-            TitleCard = titleCard;
-            NumberCard = numberCard;
-            Mana = mana;
-            TypeCard = typeCard;
-            SkillCard = skillCard;
-            TextCard = textCard;
-            PathImage = pathImage;
-            PatternCard = patternCard;
-            TitleFontSize = titleFontSize;
-            TextFontSize = textFontSize;
-            AlignmentX = alignmentX;
-            Scale = scale;
-            SecondSkill = secondSkill;
-            SkillCard2 = skillCard2;
-            DmgDop = dmgDop;
-            HPDop = hPDop;
-            CountStepDop = countStepDop;
-        }
     }
 
 
@@ -143,6 +152,7 @@ namespace ContructCard
     {
         public Cards Cards { get; set; }
         public AlignmentX ImageX { get; set; }
+        public AlignmentY ImageY { get; set; }
         public ObservableCollection<SizeFont> CollectionSize { get; set; }
         public ObservableCollection<SizeFont> CollectionSizeTitle { get; set; }
         public Skills Skills { get; set; }
@@ -164,7 +174,9 @@ namespace ContructCard
         public Cards Cards { get { return modelMain.Cards; } set { modelMain.Cards = value; OnPropertyChanged("Cards"); } }
         public Skills Skills { get { return modelMain.Skills; } set { modelMain.Skills = value; OnPropertyChanged("Skills"); } }
         public int ValueSlider3 { get { return cardSerialization.AlignmentX; }  set { cardSerialization.AlignmentX = value; OnPropertyChanged("ValueSlider3"); } }
+        public int ValueSliderY { get { return cardSerialization.AlignmentY; } set { cardSerialization.AlignmentY = value; OnPropertyChanged("ValueSliderY"); } }
         public AlignmentX ImageX { get { return modelMain.ImageX; } set { modelMain.ImageX = value; OnPropertyChanged("ImageX"); } }
+        public AlignmentY AlignmentY { get { return modelMain.ImageY; } set { modelMain.ImageY = value; OnPropertyChanged("AlignmentY"); } }
         public double ImageY { get { return cardSerialization.Scale; } set { cardSerialization.Scale = value; OnPropertyChanged("ImageY"); } }
         public ObservableCollection<SizeFont> CollectionSize { get { return modelMain.CollectionSize; } set { modelMain.CollectionSize = value; OnPropertyChanged("CollectionSize"); } }
         public ObservableCollection<SizeFont> CollectionSizeTitle { get { return modelMain.CollectionSizeTitle; } set { modelMain.CollectionSizeTitle = value; OnPropertyChanged("CollectionSizeTitle"); } }
@@ -186,6 +198,8 @@ namespace ContructCard
         public string DmgDop { get { return cardSerialization.DmgDop; } set { cardSerialization.DmgDop = value; OnPropertyChanged("DmgDop"); } }
         public string HPDop { get { return cardSerialization.HPDop; } set { cardSerialization.HPDop = value; OnPropertyChanged("HPDop"); } }
         public string CountStepDop { get { return cardSerialization.CountStepDop; } set { cardSerialization.CountStepDop = value; OnPropertyChanged("CountStepDop"); } }
+        public List<TextElement> CollectionTextElement { get { return cardSerialization.CollectionTextElement; } set { cardSerialization.CollectionTextElement = value; OnPropertyChanged("CollectionTextElement"); } }
+        public FlowDocument FlowDocument { get { return cardSerialization.FlowDocument; } set { cardSerialization.FlowDocument = value; OnPropertyChanged("FlowDocument"); } }
 
         private string Uri;
 
@@ -194,13 +208,17 @@ namespace ContructCard
             cardSerialization = new CardSerialization();
             modelMain = new ModelMain();
             Cards = new Cards();
-            Skills = new Skills(); 
+            Skills = new Skills();
+            FlowDocument = new FlowDocument(new Paragraph() { FontFamily = new System.Windows.Media.FontFamily("Fixedsys Excelsior 3.01"), TextAlignment = TextAlignment.Center, FontSize = 10 });
+            CollectionTextElement = new List<TextElement>();
 
             ImageY = 1.0;
+            AlignmentY = AlignmentY.Center;
             SecondSkill = false;
             DmgDop = "0";
             HPDop = "0";
             CountStepDop = "0";
+            TextCard = "";
 
             CollectionSizeTitle = new ObservableCollection<SizeFont>();
             for (int i = 12; i <= 22; i += 2)
@@ -219,6 +237,125 @@ namespace ContructCard
             ChangePattern(new Uri("Dictionary2.xaml", UriKind.Relative));
 
             NuberCards();
+        }
+
+        private string oldstr = "";
+
+        private CardCommand textChanged;
+        public CardCommand TextChanged
+        {
+            get
+            {
+                return textChanged ?? (textChanged = new CardCommand(obj =>
+                {
+                    if(obj.ToString() != oldstr)
+                        TextChangeMethod(obj);
+
+                    oldstr = obj.ToString();
+                }));
+            }
+        }
+
+        private void TextChangeMethod(object obj)
+        {
+            var paragraf = FlowDocument.Blocks.LastBlock as Paragraph;
+
+            string text = obj.ToString();
+            var masText = text.Split('◙').ToList();
+            
+            if (masText.Count > 1)
+            {
+                int iteration = masText.Count;
+                for (int i = 0, j = 0; j < iteration - 1; i++)
+                    if (masText[i] != "◙")
+                    {
+                        masText.Insert(i + 1, "◙");
+                        j++;
+                    }
+            }
+
+            try
+            {
+                for (int i = 0, j = 0; i < masText.Count; i++)
+                    if (masText[i].ToString() == "◙")
+                    {
+                        CollectionTextElement[j].Index = i;
+                        j++;
+                    }
+            }
+            catch
+            {
+                masText.RemoveAt(masText.Count - 1);
+            }
+
+            try
+            {
+                for (int i = 0; i < CollectionTextElement.Count; i++)
+                    if (masText[CollectionTextElement[i].Index] != '◙'.ToString())
+                        CollectionTextElement.RemoveAt(i);
+            }
+            catch
+            {
+                CollectionTextElement.Remove(CollectionTextElement.Last());
+            }
+
+            paragraf.Inlines.Clear();
+            for (int i = 0, j = 0; i < masText.Count; i++)
+            {
+                if (CollectionTextElement.FirstOrDefault(x => i == x.Index) == default)
+                    paragraf.Inlines.Add(new Run(masText[i].ToString()));
+                else
+                {
+                    paragraf.Inlines.Add(CollectionTextElement[j].InlineUIContainer);
+                    j++;
+                }
+            }
+        }
+
+        private CardCommand addImageInText;
+        public CardCommand AddImageInText
+        {
+            get
+            {
+                return addImageInText ?? (addImageInText = new CardCommand(obj =>
+                {
+                    var paragraf = FlowDocument.Blocks.LastBlock as Paragraph;
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
+                    FileInfo fileInfo = new FileInfo("Skills");
+                    openFileDialog.InitialDirectory = fileInfo.FullName;
+                    if (openFileDialog.ShowDialog().Value == true)
+                    {
+                        System.Windows.Controls.Image image = new System.Windows.Controls.Image();
+                        BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Relative));
+                        bitmapImage.Freeze();
+                        image.Source = bitmapImage;
+                        image.Width = CollectionSize[TextFontSize].FontSize;
+                        image.Height = image.Width;
+                        CollectionTextElement.Add(new TextElement(new InlineUIContainer(image), TextCard?.Length ?? 0));
+                        TextCard += " ◙ ";
+                        paragraf.Inlines.Add(CollectionTextElement.Last().InlineUIContainer);
+                    }
+                }));
+            }
+        }
+
+        private CardCommand sizeChanged;
+        public CardCommand SizeChanged
+        {
+            get
+            {
+                return sizeChanged ?? (sizeChanged = new CardCommand(obj =>
+                {
+                    var paragraf = FlowDocument.Blocks.LastBlock as Paragraph;
+                    paragraf.FontSize = CollectionSize[TextFontSize].FontSize;
+                    foreach (var item in CollectionTextElement)
+                    {
+                        item.InlineUIContainer.Child.SetValue(System.Windows.Controls.Image.WidthProperty, (double)CollectionSize[TextFontSize].FontSize);
+                        item.InlineUIContainer.Child.SetValue(System.Windows.Controls.Image.HeightProperty, (double)CollectionSize[TextFontSize].FontSize);
+                    }
+                }));
+            }
         }
 
         private CardCommand sliderValue;
@@ -242,6 +379,29 @@ namespace ContructCard
             }
         }
 
+        private CardCommand sliderValueY;
+        public CardCommand SliderValueY
+        {
+            get
+            {
+                return sliderValueY ?? (sliderValueY = new CardCommand(obj =>
+                {
+                    switch (ValueSliderY)
+                    {
+                        case 0:
+                            AlignmentY = AlignmentY.Bottom;
+                            break;
+                        case 1:
+                            AlignmentY = AlignmentY.Center;
+                            break;
+                        case 2:
+                            AlignmentY = AlignmentY.Top;
+                            break;
+                    }
+                }));
+            }
+        }
+
         private CardCommand openDialog;
         public CardCommand OpenDialog
         {
@@ -256,14 +416,9 @@ namespace ContructCard
                         string SaveImagePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ConstructorVladika";
                         System.IO.Directory.CreateDirectory(SaveImagePath);
                         string InputImagePath = openFileDialog.FileName;
-                        using (MagickImage image = new MagickImage(InputImagePath))
-                        {
-                            image.Emboss(1, 2);
-                            image.Equalize();
-                            image.Write(SaveImagePath += $"\\{Path.GetRandomFileName()}.png");
 
-                            image.Dispose();
-                        }
+                        System.IO.File.Copy(InputImagePath, SaveImagePath += $"\\{Path.GetRandomFileName()}.png");
+
                         OriginalImagePath = SaveImagePath;
                         ImagePath = SaveImagePath;
                     }
@@ -384,6 +539,14 @@ namespace ContructCard
                             insertMediaUpload = driveService.Files.Insert(file, stream, "image/*");
                             insertMediaUpload.Upload();
                         }
+
+                        file.Title = $"{Environment.UserName}card.xaml";
+
+                        using (Stream stream = System.IO.File.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\ConstructorVladika\\PatternCard{Environment.UserName}\\card.xaml", FileMode.Open, FileAccess.Read))
+                        {
+                            insertMediaUpload = driveService.Files.Insert(file, stream, "application/xaml");
+                            insertMediaUpload.Upload();
+                        }
                     }
                     catch
                     {
@@ -444,6 +607,10 @@ namespace ContructCard
                     if (tmp != null)
                     {
                         cardSerialization = tmp;
+                        var parag = FlowDocument.Blocks.LastBlock as Paragraph;
+
+                        CollectionTextElement = parag.Inlines.Where(x => x is InlineUIContainer).Select(x => new TextElement(x as InlineUIContainer)).ToList();
+
                         Dmg = cardSerialization.Dmg;
                         Hp = cardSerialization.Hp;
                         Mana = cardSerialization.Mana;
@@ -463,6 +630,8 @@ namespace ContructCard
                         DmgDop = cardSerialization.DmgDop;
                         HPDop = cardSerialization.HPDop;
                         CountStepDop = cardSerialization.CountStepDop;
+                        ValueSliderY = cardSerialization.AlignmentY;
+                        FlowDocument = cardSerialization.FlowDocument;
                     }
                     NuberCards();
                 }));

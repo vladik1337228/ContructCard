@@ -15,8 +15,6 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ImageMagick;
-using ImageMagick.Configuration;
 
 namespace ContructCard
 {
@@ -41,6 +39,13 @@ namespace ContructCard
                 new Card("Шаблон карты общей колоды", @"/Additional.png", new Uri("Dictionary5.xaml", UriKind.Relative), "Карта общей колоды. Находится в общей колоде. Служит для дополнения игральных механик."));
 
             DataContext = viewModelMain;
+
+            openFlowDocument.Click += OpenFlowDocument_Click;
+        }
+
+        private void OpenFlowDocument_Click(object sender, RoutedEventArgs e)
+        {
+                new Window1().Show();
         }
     }
 }
